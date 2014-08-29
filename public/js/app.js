@@ -114,7 +114,7 @@ Ember.Handlebars.registerHelper('bars', function (args) {
     var width = 30
       , height = data[i] * 10
       , hPosition = (i * 40)
-      , vPostion = elementHeight - height
+      , vPosition = elementHeight - height
       ;
 
     rects.push('<rect class="bar" x="'+ hPosition +'" width="' + width +'" y="'+ vPosition +'" height="'+ height +'"></rect>');
