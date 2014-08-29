@@ -1,0 +1,9 @@
+{
+  "name": "LetsMakeAChartWithEmber"
+, "version": "0.0.1"
+, "description":""
+, "main": "app.js"
+, "devDependencies": {
+  "connect": "1.2.2"
+  }
+}

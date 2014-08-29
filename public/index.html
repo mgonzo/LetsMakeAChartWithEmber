@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Title Goes Here</title>
+  <link rel="stylesheet" href="/ng/css/normalize.css">
+  <link rel="stylesheet" href="/ng/css/style.css">
+  <style>
+    .barchart {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+
+  <header></header>
+
+  <script type="text/x-handlebars">
+    <nav class="nav">
+    <ul>
+      <li>
+      {{#link-to 'index' class="icon index"}}
+        Index
+      {{/link-to}}
+      </li>
+      <li>
+      {{#link-to 'barcharts' class="icon barchart"}}
+        List
+      {{/link-to}}
+      </li>
+      <li>
+      {{#link-to 'newBarchart' class="icon barchart"}}
+        New Barchart
+      {{/link-to}}
+      </li>
+    </ul>
+    </nav>
+    {{outlet}}
+  </script>
+
+  <script type="text/x-handlebars" id="index">
+    <h3>Here is the index page.</h3>
+  </script>
+
+  <script type="text/x-handlebars" id="barcharts">
+    <div class="list barchart">
+      <ul>
+      {{#each}}
+        <li>
+        {{#link-to 'barchart' this}}
+          {{name}}
+        {{/link-to}}
+        </li>
+      {{/each}}
+      </ul>
+      <section>
+      {{outlet}}
+      </section>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" id="barchart">
+    <section class="chart-data">
+    <div class="chart bar">
+      {{name}}
+      {{data}}
+      {{#bars height=150}}
+      {{/bars}}
+    </div>
+    {{#if isEditing}}
+    {{partial 'barchart/edit'}}
+    <button {{action 'save'}}>save</button>
+    {{else}}
+    <button {{action 'edit'}}>edit</button>
+    {{/if}}
+    </section>
+  </script>
+
+  <script type="text/x-handlebars" id="barchart/_edit">
+    <p>{{input type="text" value=name}}</p>
+    <p>{{input type="text" value=data}}</p>
+  </script>
+
+  <script type="text/x-handlebars" id="newBarchart">
+    {{#if isEditingName}}
+      <p>{{input type="text" value=name}}</p>
+      <button {{action 'saveName'}}>save</button>
+    {{else}}
+      {{name}}
+      <button {{action 'editName'}}>edit</button>
+    {{/if}}
+    {{textarea value=dataStringX}}
+    {{input type="number" value=rangeMin}}
+    {{input type="number" value=rangeMax}}
+  </script>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.1.2/handlebars.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ember.js/1.5.1/ember.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/ember-data.js/1.0.0-beta.7/ember-data.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+  <script src="/ng/js/app.js"></script>
+  <!-- to activate the test runner, add the "?test" query string parameter -->
+  <script src="/ng/tests/runner.js"></script>
+</body>
+</html>
